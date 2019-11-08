@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * @desc 学生信息实体类
- * @author qinrq
+ * @author 山风
  */
 @Data
 @TableName("user_info")//@TableName中的值对应着表名

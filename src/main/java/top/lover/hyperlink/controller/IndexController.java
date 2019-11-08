@@ -14,7 +14,7 @@ import top.lover.hyperlink.entity.UserInfoEntity;
 import top.lover.hyperlink.service.UserInfoService;
 
 /**
- * @author qinrq
+ * @author 山风
  */
 @Controller
 @RequestMapping("/index")

@@ -15,7 +15,7 @@ import lombok.Data;
 @TableName("T_CITY_INFO")//@TableName中的值对应着表名
 public class CityInfo {
     @TableId(type = IdType.AUTO)
-    private Long ID;
+    private Integer ID;
     /**
      * 地区名
      * */
@@ -27,6 +27,6 @@ public class CityInfo {
     /**
      * 父级id
      * */
-    private Long parentId;
+    private Integer parentId;
 
 }

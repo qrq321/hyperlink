@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * @Description 用户业务接口
- * @author qinrq
+ * @author 山风
  */
 public interface UserInfoService extends IService<UserInfoEntity> {
     public ArrayList<UserInfoEntity> getUserInfo();
