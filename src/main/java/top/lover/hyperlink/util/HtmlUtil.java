@@ -23,7 +23,7 @@ public class HtmlUtil {
         try{
             doc = conn.get();
         }catch (IOException iOException){
-            System.out.println("报错了:"+iOException);
+            System.out.println("报错1了:"+iOException);
         }
         return doc;
     }
