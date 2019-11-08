@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="/vue/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{msg}}</p>
+        </div>
+        <script>
+            var vm = new Vue({
+                el:"#app",
+                data:{
+                    msg: '欢迎学习Vue'
+                }
+            })
+        </script>
+    </body>
+</html>
