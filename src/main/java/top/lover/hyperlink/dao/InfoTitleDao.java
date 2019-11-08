@@ -6,7 +6,6 @@ package top.lover.hyperlink.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import top.lover.hyperlink.entity.T_INFO_TITLE;
 
 /**
  * @Description 用户信息DAO

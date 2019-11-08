@@ -2,9 +2,6 @@ package top.lover.hyperlink.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.jsoup.nodes.Document;
-import top.lover.hyperlink.entity.T_INFO_TITLE;
-
-import java.util.ArrayList;
 
 /**
  * @Description 用户业务接口
