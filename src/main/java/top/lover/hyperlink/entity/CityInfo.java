@@ -12,10 +12,10 @@ import lombok.Data;
 * @date 2019-11-5 10点51分
 */
 @Data
-@TableName("T_CITY_INFO")//@TableName中的值对应着表名
+@TableName("t_city_info")//@TableName中的值对应着表名
 public class CityInfo {
     @TableId(type = IdType.AUTO)
-    private Integer ID;
+    private Integer Id;
     /**
      * 地区名
      * */
@@ -29,4 +29,13 @@ public class CityInfo {
      * */
     private Integer parentId;
 
+    @Override
+    public String toString() {
+        return "CityInfo{" +
+                "Id=" + Id +
+                ", areaName='" + areaName + '\'' +
+                ", type=" + type +
+                ", parentId=" + parentId +
+                '}';
+    }
 }
