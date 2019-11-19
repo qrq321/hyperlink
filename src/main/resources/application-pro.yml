@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 666
 
 spring:
   thymeleaf:
@@ -18,9 +18,9 @@ spring:
   datasource:
      driver-class-name: com.mysql.cj.jdbc.Driver
      #     #url: jdbc:mysql://localhost:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-     url: jdbc:mysql://localhost:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+     url: jdbc:mysql://149.248.1.128:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
      username: root
-     password: root
+     password: hyperlink
      type: com.alibaba.druid.pool.DruidDataSource
 # mybatis-plus相关配置
 mybatis-plus:
