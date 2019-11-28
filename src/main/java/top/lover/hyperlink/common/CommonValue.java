@@ -11,4 +11,6 @@ public class CommonValue {
     Integer code;
     //详情
     String msg;
+    //详情
+    String param;
 }

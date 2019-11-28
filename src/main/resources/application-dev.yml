@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8011
 
 spring:
   thymeleaf:
@@ -17,7 +17,7 @@ spring:
 # 配置数据源
   datasource:
      driver-class-name: com.mysql.cj.jdbc.Driver
-     #     #url: jdbc:mysql://localhost:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+     #url: jdbc:mysql://149.248.1.128:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
      url: jdbc:mysql://localhost:3306/hyperlink?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
      username: root
      password: root
@@ -47,4 +47,6 @@ logging:
   level:
     com:
       example:
-        mapper : debug
+        mapper: debug
+appid: wxd5e921e166248a37
+secret: f35c1c5b5a2db85e7680c202fec0461b

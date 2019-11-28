@@ -12,11 +12,12 @@ import lombok.Data;
 * @date 2019-11-5 10点51分
 */
 @Data
-@TableName("T_HOUST_INFO")//@TableName中的值对应着表名
+@TableName("t_house_info")//@TableName中的值对应着表名
 public class HouseInfo {
     @TableId(type = IdType.AUTO)
     private Long ID;
     /**图片地址.*/
     private String imgUrl;
     /**/
+    
 }
