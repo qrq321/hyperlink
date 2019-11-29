@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,9 +50,15 @@ public class CityController {
      */
     @RequestMapping("/getCity")
     @ResponseBody
+    @Transactional
     public List<CityInfo> getCity(@RequestBody String obj){
         System.out.println(obj);
         List<CityInfo> city = cityService.getCity();
+        CityInfo cityInfo = new CityInfo();
+        cityInfo.setAreaName("name");
+        cityInfo.setParentId(1);
+        cityInfo.setType(1);
+        cityService.save(cityInfo);
         city.forEach(e-> System.out.println(e.toString()));
         return city;
     }

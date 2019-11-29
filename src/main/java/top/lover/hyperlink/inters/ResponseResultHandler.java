@@ -50,7 +50,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
             result.setMsg(map.get("message").toString());
             return result;
         }
-//处理返回值是String的情况
+        //处理返回值是String的情况
         if (body instanceof String) {
             return JSON.toJSONString(body);
         }
