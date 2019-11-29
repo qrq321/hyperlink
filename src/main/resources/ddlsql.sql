@@ -23,3 +23,13 @@ CREATE TABLE `t_user_info`  (
   `death_type` int(2) NULL COMMENT '死亡方式',
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `t_menu_info`  (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '菜单主键',
+  `parent_id` int(20) NULL COMMENT '上级菜单id',
+  `type` int(1) NULL COMMENT '菜单类别',
+  `url` varchar(100) NULL COMMENT '菜单链接',
+  `create_time` datetime NULL COMMENT '创建时间',
+  `update_time` datetime NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+);

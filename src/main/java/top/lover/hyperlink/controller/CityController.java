@@ -5,14 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.lover.hyperlink.annotation.ResponseResult;
-import top.lover.hyperlink.entity.CityInfo;
-import top.lover.hyperlink.service.CityService;
 import top.lover.hyperlink.util.AliPushUtil;
 import top.lover.hyperlink.util.FileUtil;
 import top.lover.hyperlink.util.HttpUtil;
@@ -22,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,41 +35,9 @@ public class CityController {
     @Value("${secret}")
     public String secret;
     int nums = 1;
-    @Autowired
-    private CityService cityService;
+
     @Autowired
     private AliPushUtil aliPushUtil;
-    /**
-     * 根据ID获取用户信息
-     * @Param  userId  用户ID
-     * @Return UserInfoEntity 用户实体
-     */
-    @RequestMapping("/getCity")
-    @ResponseBody
-    @Transactional
-    public List<CityInfo> getCity(@RequestBody String obj){
-        System.out.println(obj);
-        List<CityInfo> city = cityService.getCity();
-        CityInfo cityInfo = new CityInfo();
-        cityInfo.setAreaName("name");
-        cityInfo.setParentId(1);
-        cityInfo.setType(1);
-        cityService.save(cityInfo);
-        city.forEach(e-> System.out.println(e.toString()));
-        return city;
-    }
-    /**
-     * 根据ID获取用户信息
-     * @Param  userId  用户ID
-     * @Return UserInfoEntity 用户实体
-     */
-    @RequestMapping("/getCity1")
-    @ResponseBody
-    public List<CityInfo> getCity1( JSONObject obj){
-        List<CityInfo> city = cityService.getCity();
-        city.forEach(e-> System.out.println(e.toString()));
-        return city;
-    }
 
     @RequestMapping("/test")
     @ResponseBody
