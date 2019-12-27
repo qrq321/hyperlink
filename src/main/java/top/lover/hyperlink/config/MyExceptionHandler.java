@@ -1,6 +1,5 @@
 package top.lover.hyperlink.config;
 
-import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -36,11 +35,7 @@ public class MyExceptionHandler {
     public void addAttribute(Model model) {
         model.addAttribute("attribute",  "The Attribute");
     }
-    /**
-     * 捕获CustomException
-     * @param e
-     * @return json格式类型
-     */
+
     /**
      * 捕获CustomException
      * @param e

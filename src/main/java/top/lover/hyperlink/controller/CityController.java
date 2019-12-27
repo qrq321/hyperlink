@@ -99,15 +99,15 @@ public class CityController {
                 * title // 消息的标题
                 * content // 消息的内容*/
          //ios
-//        map.put("appKey","27918662");
+//        map.put("appKey","27918662");//
         //android
-        //map.put("appKey","28105286");
-        map.put("appKey","28139772");
-        map.put("target","DEVICE");
+//        map.put("appKey","28105286");
+        //map.put("appKey","28139772");
+//        map.put("target","DEVICE");
 //        map.put("value","58a0a4beef2e4accbe66f5d4782b785b");
         //android
         map.put("value",obj.getString("param"));
-        map.put("deviceType","ANDROID");
+        map.put("deviceType","iOS");
         map.put("title","title");
         map.put("content","欢迎优雅聪明的你，使用本app");
         aliPushUtil.pushNotice(map);
