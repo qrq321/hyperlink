@@ -1,6 +1,5 @@
 package top.lover.hyperlink.inters;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -34,7 +33,6 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         HttpServletRequest request = sra.getRequest();
         //判断请求，是否有包装标记
         ResponseResult responseResult = (ResponseResult) request.getAttribute(RESPONSE_RESULT_ANN);
-        System.out.println("进来啦！！！！！！");
         return responseResult == null ? false : true;
     }
 
@@ -43,6 +41,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request,
                                   ServerHttpResponse response) {
         log.info("返回之前的数据:"+body.toString());
+        //报错处理
         if(body instanceof LinkedHashMap){
             LinkedHashMap<String,Object> map = (LinkedHashMap<String,Object>) body;
             Result result = Result.failure(ResultCode.FAILSE,body);
@@ -50,10 +49,10 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
             result.setMsg(map.get("message").toString());
             return result;
         }
-        //处理返回值是String的情况
-        if (body instanceof String) {
-            return JSON.toJSONString(body);
+        if(body instanceof Result){
+            return body;
         }
+        //返回错误数据的处理
         return Result.success(body);
     }
 

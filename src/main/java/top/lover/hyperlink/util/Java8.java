@@ -1,17 +1,10 @@
 package top.lover.hyperlink.util;
 
-import top.lover.hyperlink.common.CommonValue;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /**
  * @author qinrq
  */
 public class Java8 {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
         List<CommonValue> users = new ArrayList<CommonValue>();
         for (int i = 0;i<205;i++){
             CommonValue pushInfoVo = new CommonValue();
@@ -33,6 +26,6 @@ public class Java8 {
         splitList.forEach(list1-> {
             System.out.println("size的大小："+list1.size());
             list1.forEach(l-> System.out.println(l));
-        });
+        });*/
     }
 }

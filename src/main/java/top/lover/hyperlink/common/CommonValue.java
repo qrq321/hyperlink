@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class CommonValue {
     //类型
-    Integer code;
+    Integer pageSize;
     //详情
-    String msg;
+    Integer pageNum;
     //详情
-    String param;
+    String query;
 }

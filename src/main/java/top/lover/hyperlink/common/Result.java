@@ -23,13 +23,13 @@ public class Result implements Serializable {
     /**
      * 返回的数据
      * */
-    private Object data;
+    private Object datas;
     Result(){
     }
-    public Result(ResultCode resultCode,Object data){
+    public Result(ResultCode resultCode,Object datas){
         this.code = resultCode.code();
         this.msg = resultCode.msg();
-        this.data = data;
+        this.datas = datas;
     }
     //返回成功
     public static Result success(){
@@ -38,10 +38,10 @@ public class Result implements Serializable {
         return result;
     }
     //返回成功
-    public static Result success(Object data){
+    public static Result success(Object datas){
         Result result = new Result();
         result.setResult(ResultCode.SUCCESS);
-        result.setData(data);
+        result.setDatas(datas);
         return result;
     }
     //返回失败
@@ -51,10 +51,10 @@ public class Result implements Serializable {
         return result;
     }
     //返回失败
-    public static Result failure(ResultCode resultCode,Object data){
+    public static Result failure(ResultCode resultCode,Object datas){
         Result result = new Result();
         result.setResult(ResultCode.FAILSE);
-        result.setData(data);
+        result.setDatas(datas);
         return result;
     }
 
@@ -63,12 +63,4 @@ public class Result implements Serializable {
         this.msg = result.msg();
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
-    }
 }

@@ -16,6 +16,7 @@ import top.lover.hyperlink.service.MenuService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 山风
@@ -23,7 +24,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @ResponseResult
-@RequestMapping("/menu")
+@RequestMapping("menu")
 public class MenuController {
 
     @Autowired
@@ -31,18 +32,8 @@ public class MenuController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<TMenuInfo> getList(HttpServletRequest request, @RequestBody String json) throws Exception{
-
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        //获取前台发送过来的数据
-        Integer type = jsonObject.getInteger("type");
-        Integer parentId = jsonObject.getInteger("parentId");
-
-        QueryWrapper<TMenuInfo> wrapper = new QueryWrapper<>();
-        wrapper.eq(true,"type",type);
-        wrapper.eq(true,"parent_Id",parentId);
-
-        List<TMenuInfo> list = menuService.list(wrapper);
+    public List<Map<String,Object>> getList() throws Exception{
+        List<Map<String,Object>> list = menuService.menuList();
         return list;
     }
 
