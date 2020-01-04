@@ -15,5 +15,6 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="slat" property="slat" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>
