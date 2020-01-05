@@ -8,6 +8,7 @@ CREATE TABLE `t_account_info`  (
   `create_time` datetime NULL COMMENT '创建时间',
   `lastlogin_time` datetime NULL COMMENT '最后一次登录时间',
   `status` int(2) NULL COMMENT '账户状态',
+  `slat` int(2) NULL COMMENT '盐',
   PRIMARY KEY (`id`)
 );
 ##账号表
