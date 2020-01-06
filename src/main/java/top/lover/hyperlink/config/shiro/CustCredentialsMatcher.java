@@ -13,7 +13,7 @@ import java.util.List;
  * @author shanfeng
  * @create 2020-01-04 16:51
  */
-public class BosCredentialsMatcher extends SimpleCredentialsMatcher {
+public class CustCredentialsMatcher extends SimpleCredentialsMatcher {
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {

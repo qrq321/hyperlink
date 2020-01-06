@@ -60,7 +60,6 @@ public class ShiroConfig {
 
     /**
      *  Credentials：凭证/证书 ---
-     *
      * 配置Realm域，注入密码比较器
      * @param credentialsMatcher
      * @return
@@ -72,13 +71,12 @@ public class ShiroConfig {
         return customRealm;
     }
     /**
-     * 密码比较器
-     *
+     * 自定义密码比较器
      * @return
      */
     @Bean
     public CredentialsMatcher credentialsMatcher(){
-        return new BosCredentialsMatcher();
+        return new CustCredentialsMatcher();
     }
     /**
      * 开启shiro aop注解支持
