@@ -60,6 +60,7 @@ public class CustomRealm extends AuthorizingRealm {
             //返回null表示账号不存在
             return null;
         }
-        return new SimpleAuthenticationInfo(accountInfo, accountInfo.getPassword(), ByteSource.Util.bytes(accountInfo.getSlat()),getName());
+        AuthenticationInfo info = new SimpleAuthenticationInfo(accountInfo, accountInfo.getPassword(), ByteSource.Util.bytes(accountInfo.getSlat()),getName());
+        return info;
     }
 }
