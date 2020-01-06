@@ -56,7 +56,7 @@ public class CustomRealm extends AuthorizingRealm {
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
         //2 通过username从数据库中查找 User对象，如果找到，没找到.
         TAccountInfo accountInfo = accountService.getAccountByName(upToken.getUsername());
-        if(accountInfo == null){
+        if(accountInfo == null||accountInfo.getStatus() != 1){
             //返回null表示账号不存在
             return null;
         }

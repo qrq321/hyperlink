@@ -33,6 +33,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/menu/*", "anon");
         filterChainDefinitionMap.put("/users/*", "anon");
         filterChainDefinitionMap.put("/users/edit/*", "anon");
+        filterChainDefinitionMap.put("/users/delete/*", "anon");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/front/**", "anon");
         filterChainDefinitionMap.put("/api/**", "anon");

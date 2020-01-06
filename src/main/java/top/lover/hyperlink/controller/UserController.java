@@ -45,6 +45,7 @@ public class UserController {
         if(!StringUtils.isEmpty(common.getQuery())){
             wrapper.like(true,"account",common.getQuery());
         }
+        wrapper.eq(true,"status",1);
 //        wrapper.eq(true,"parent_Id",parentId);
         page = accountService.page(page,wrapper);
         return page;
@@ -76,9 +77,8 @@ public class UserController {
             wrapper.eq(true,"id",accountInfo.getId());
             accountInfo.setLastloginTime(new Date());
             TAccountInfo one = accountService.getOne(wrapper);
-            String password = Encrypt.md5(accountInfo.getPassword(),one.getSlat());
             BeanUtils.copyProperties(accountInfo,one);
-            if(!one.getPassword().equals(password)){
+            if(!"------".equals(accountInfo.getPassword())){
                 String slat = new Random().nextInt(99)+"";
                 one.setPassword(Encrypt.md5(one.getPassword(),slat));
                 one.setSlat(slat);
@@ -96,6 +96,18 @@ public class UserController {
         QueryWrapper<TAccountInfo> wrapper = new QueryWrapper<>();
         wrapper.eq(true,"id",id);
         TAccountInfo one = accountService.getOne(wrapper);
+        one.setPassword("------");
         return one;
+    }
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean deleteByid(@PathVariable Integer id) throws Exception{
+        boolean flag = false;
+        QueryWrapper<TAccountInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq(true,"id",id);
+        TAccountInfo one = accountService.getOne(wrapper);
+        one.setStatus(-1);
+        flag = accountService.updateById(one);
+        return flag;
     }
 }
