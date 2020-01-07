@@ -24,7 +24,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @ResponseResult
-@RequestMapping("menu")
+@RequestMapping("/menu")
 public class MenuController {
 
     @Autowired

@@ -3,10 +3,13 @@ package top.lover.hyperlink.config.shiro;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +27,13 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+        /*
+        anon: 无需认证即可访问
+        authc: 需要认证才可访问
+        user: 点击“记住我”功能可访问
+        perms: 拥有权限才可以访问
+        role: 拥有某个角色权限才能访问
+        * */
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setUnauthorizedUrl("/notRole");
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
@@ -31,9 +41,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/menu/*", "anon");
-        filterChainDefinitionMap.put("/users/*", "anon");
+//        filterChainDefinitionMap.put("/users/*", "anon");
         filterChainDefinitionMap.put("/users/edit/*", "anon");
         filterChainDefinitionMap.put("/users/delete/*", "anon");
+        filterChainDefinitionMap.put("userslist", "perms");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/front/**", "anon");
         filterChainDefinitionMap.put("/api/**", "anon");
@@ -52,11 +63,29 @@ public class ShiroConfig {
      * @param realm
      * @return
      */
-    @Bean
+   /* @Bean
     public SecurityManager securityManager(Realm realm) {
         DefaultWebSecurityManager securityManager  = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
         return securityManager ;
+    }*/
+    @Bean("securityManager")
+    public SecurityManager securityManager(@Qualifier("realm")Realm realm
+            ,@Qualifier("sessionManager") SessionManager sessionManager) {
+        DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
+        manager.setRealm(realm);
+        manager.setSessionManager(sessionManager);
+        return manager;
+    }
+
+    @Bean("sessionManager")
+    public SessionManager sessionManager(){
+        CustomSessionManager manager = new CustomSessionManager();
+		/*使用了shiro自带缓存，
+		如果设置 redis为缓存需要重写CacheManager（其中需要重写Cache）
+		manager.setCacheManager(this.RedisCacheManager());*/
+        manager.setSessionDAO(new EnterpriseCacheSessionDAO());
+        return manager;
     }
 
     /**
@@ -65,7 +94,7 @@ public class ShiroConfig {
      * @param credentialsMatcher
      * @return
      */
-    @Bean
+    @Bean("realm")
     public CustomRealm realm(CredentialsMatcher credentialsMatcher) {
         CustomRealm customRealm = new CustomRealm();
         customRealm.setCredentialsMatcher(credentialsMatcher);

@@ -4,6 +4,9 @@ import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,9 +37,13 @@ public class UserController {
     @Autowired
     private AccountService accountService;
 
+    @RequiresPermissions("userslist")
     @RequestMapping("/list")
     @ResponseBody
     public IPage<TAccountInfo> list(@RequestBody CommonValue common) throws Exception{
+        Subject subject = SecurityUtils.getSubject();
+        Long currentUserId = (Long) subject.getSession().getAttribute("currentUserId");
+        System.out.println(currentUserId);
         //获取前台发送过来的数据
 //        Integer type = jsonObject.getInteger("type");
 //        Integer parentId = jsonObject.getInteger("parentId");

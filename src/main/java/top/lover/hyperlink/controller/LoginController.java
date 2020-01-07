@@ -17,6 +17,8 @@ import top.lover.hyperlink.annotation.ResponseResult;
 import top.lover.hyperlink.common.Result;
 import top.lover.hyperlink.enumtype.ResultCode;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author 山风
  */
@@ -36,15 +38,17 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Result login(@RequestBody UserLogin login) {
+    public Result login(@RequestBody UserLogin login, HttpServletRequest request) {
         // 从SecurityUtils里边创建一个 subject
         Subject subject = SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌）
         UsernamePasswordToken token = new UsernamePasswordToken(login.getUsername(), login.getPassword());
-        token.setRememberMe(true);
+        String tokens;
         // 执行认证登陆
         try {
             subject.login(token);
+            tokens = subject.getSession().getId().toString();
+
         } catch (UnknownAccountException uae) {
             return Result.failure(ResultCode.FAILSE,"未知账户");
         } catch (IncorrectCredentialsException ice) {
@@ -57,7 +61,7 @@ public class LoginController {
             return Result.failure(ResultCode.FAILSE,"用户名或密码不正确");
         }
         if (subject.isAuthenticated()) {
-            return Result.success("登录成功");
+            return Result.success("登录成功",tokens);
         } else {
             token.clear();
             return Result.failure(ResultCode.FAILSE,"登录失败");

@@ -13,4 +13,6 @@ public class CommonValue {
     Integer pageNum;
     //详情
     String query;
+    //token
+    String token;
 }

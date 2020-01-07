@@ -21,6 +21,10 @@ public class Result implements Serializable {
      * */
     private String msg;
     /**
+     * 返回信息描述
+     * */
+    private String token;
+    /**
      * 返回的数据
      * */
     private Object datas;
@@ -42,6 +46,14 @@ public class Result implements Serializable {
         Result result = new Result();
         result.setResult(ResultCode.SUCCESS);
         result.setDatas(datas);
+        return result;
+    }
+    //返回成功
+    public static Result success(Object datas,String token){
+        Result result = new Result();
+        result.setResult(ResultCode.SUCCESS);
+        result.setDatas(datas);
+        result.setToken(token);
         return result;
     }
     //返回失败
