@@ -1,5 +1,6 @@
 package top.lover.hyperlink.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,7 @@ import top.lover.hyperlink.service.UserInfoService;
  * @author 山风
  */
 @Controller
+@Api(tags = "用户登陆相关Api")
 @RequestMapping("/index")
 public class IndexController {
 

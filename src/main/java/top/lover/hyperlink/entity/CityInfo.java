@@ -28,14 +28,4 @@ public class CityInfo {
      * 父级id
      * */
     private Integer parentId;
-
-    @Override
-    public String toString() {
-        return "CityInfo{" +
-                "Id=" + Id +
-                ", areaName='" + areaName + '\'' +
-                ", type=" + type +
-                ", parentId=" + parentId +
-                '}';
-    }
 }

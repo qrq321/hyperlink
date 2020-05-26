@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Slf4j
 @Data
-public class Result implements Serializable {
+public class Result<T> implements Serializable {
     /**
      * 返回状态码
      * */
@@ -23,10 +23,10 @@ public class Result implements Serializable {
     /**
      * 返回的数据
      * */
-    private Object data;
+    private T data;
     Result(){
     }
-    public Result(ResultCode resultCode,Object data){
+    public Result(ResultCode resultCode,T data){
         this.code = resultCode.code();
         this.msg = resultCode.msg();
         this.data = data;
