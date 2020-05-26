@@ -2,10 +2,10 @@ package top.lover.hyperlink.controller;
 
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +31,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @ResponseResult
+@Api(value = "testController",tags = "我是项目说明。。。。。。。")
 @RequestMapping("/test")
 public class CityController {
     @Value("${appid}")
@@ -50,7 +51,6 @@ public class CityController {
      */
     @RequestMapping("/getCity")
     @ResponseBody
-    @Transactional
     public List<CityInfo> getCity(@RequestBody String obj){
         System.out.println(obj);
         List<CityInfo> city = cityService.getCity();

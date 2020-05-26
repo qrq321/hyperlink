@@ -16,13 +16,7 @@ import top.lover.hyperlink.inters.ResponseResultInterceptor;
 @Slf4j
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    /**
-     * mybatisplus 分页
-    * */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
-    }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
