@@ -3,13 +3,12 @@ package top.lover.hyperlink.controller;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.lover.hyperlink.annotation.ResponseResult;
 import top.lover.hyperlink.entity.CityInfo;
 import top.lover.hyperlink.service.CityService;
@@ -40,8 +39,14 @@ public class CityController {
     @Value("${secret}")
     public String secret;
     int nums = 1;
+    /**
+     * sevice
+     * */
     @Autowired
     private CityService cityService;
+    /**
+     * 阿里推送
+     * */
     @Autowired
     private AliPushUtil aliPushUtil;
     /**
@@ -50,8 +55,9 @@ public class CityController {
      * @Return UserInfoEntity 用户实体
      */
     @RequestMapping("/getCity")
+    @ApiOperation(value = "我也是测试接口的定义数据的")
     @ResponseBody
-    public List<CityInfo> getCity(@RequestBody String obj){
+    public List<CityInfo> getCity(@ApiParam(value = "尽职报告id", required = true) @RequestParam String obj){
         System.out.println(obj);
         List<CityInfo> city = cityService.getCity();
         CityInfo cityInfo = new CityInfo();

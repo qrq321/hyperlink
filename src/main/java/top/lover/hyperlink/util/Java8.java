@@ -14,7 +14,7 @@ public class Java8 {
     public static void main(String[] args) {
         List<CommonValue> users = new ArrayList<CommonValue>();
         for (int i = 0;i<205;i++){
-            CommonValue pushInfoVo = new CommonValue();
+            CommonValue pushInfoVo = CommonValue.builder().build();
             if(i%3==1){
                 pushInfoVo.setMsg(i+"-"+i);
             }else{

@@ -34,7 +34,6 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         HttpServletRequest request = sra.getRequest();
         //判断请求，是否有包装标记
         ResponseResult responseResult = (ResponseResult) request.getAttribute(RESPONSE_RESULT_ANN);
-        System.out.println("进来啦！！！！！！");
         return responseResult == null ? false : true;
     }
 
